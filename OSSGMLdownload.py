@@ -60,6 +60,7 @@ katured.send_keys(input("Katastarska općina: "))
 katured.send_keys(Keys.ENTER)
 time.sleep(1)
 brkatces = driver.find_element_by_xpath("/html/body/div[4]/div[2]/div[5]/div/div/div[2]/div[2]/div[1]/div/div/div[1]/div/div[2]/div[1]/form/fieldset[1]/div/div/div[3]/table/tbody/tr/td[1]/div/div/div[1]/div/table/tbody/tr/td[1]/input")
+podbrkatces = driver.find_element_by_xpath("/html/body/div[4]/div[2]/div[5]/div/div/div[2]/div[2]/div[1]/div/div/div[1]/div/div[2]/div[1]/form/fieldset[1]/div/div/div[3]/table/tbody/tr/td[1]/div/div/div[1]/div/table/tbody/tr/td[2]/input")
 dodkatces = driver.find_element_by_xpath("/html/body/div[4]/div[2]/div[5]/div/div/div[2]/div[2]/div[1]/div/div/div[1]/div/div[2]/div[1]/form/fieldset[1]/div/div/div[3]/table/tbody/tr/td[2]/table/tbody/tr/td[2]/em/button")
 nepocestikat = []
 for i in range(0,len(cestice)):
@@ -67,7 +68,16 @@ for i in range(0,len(cestice)):
         time.sleep(0.1)
     else:
         brkatces.clear()
-        brkatces.send_keys(cestice[i])
+        podbrkatces.clear()
+        #trenutno rjesenje, moglo bi se izvest masu bolje(kao i xpathovi)
+        x = cestice[i].split("/")
+        if len(x) == 1:
+            brkatces.send_keys(x[0])
+        elif len(x) == 2:
+            brkatces.send_keys(x[0])
+            podbrkatces.send_keys(x[1])
+        else:
+            pass
         dodkatces.click()
         while check_exists_by_id("x-auto-30") is True:
             time.sleep(0.1)
