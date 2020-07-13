@@ -12,3 +12,4 @@ The process itself can be further automated using 3rd party captcha solvers inst
 Web driver documentation and tutorial can be found on https://www.selenium.dev/documentation/en/webdriver/
 
 Although it makes no sense at first occasional .sleep() had to be implemented for scripts to run smoothly and not bug randomly.
+Using full xpath here makes sense here (mainly coz they can be copied from browser easily :D) but i dont recommend it - relative xpaths almost always make more sense in a long term.
